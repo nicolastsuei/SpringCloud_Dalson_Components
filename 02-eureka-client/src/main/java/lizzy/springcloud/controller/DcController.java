@@ -17,7 +17,9 @@ public class DcController {
     String port;
 
     @GetMapping("/dc")
-    public String dc() {
+    public String dc() throws InterruptedException {
+        //为了触发服务降级逻辑，加一些延迟
+        //Thread.sleep(5000L);
         String services = "Services: " + discoveryClient.getServices() + "---端口号：" + port;
         System.out.println(services);
         return services;
